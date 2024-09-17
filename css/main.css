@@ -1,5 +1,258 @@
+:root {
+  --red: #e57373;
+  --green: #4bdbbb;
+  --light-green: #f2fbf3;
+  --dark-green: #21ad8d;
+  --gold: #d1a632;
+  --unfilled: #e9ecef;
+  --text: #555555;
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+@font-face {
+  font-family: "Dubai-Regular";
+  src: url(../fonts/Dubai-Regular.ttf);
+}
+@font-face {
+  font-family: "Dubai-Bold";
+  src: url(../fonts/Dubai-Bold.ttf);
+}
+@font-face {
+  font-family: Arslan-Wessam;
+  src: url(../fonts/Arslan-Wessam.ttf);
+}
+body {
+  color: var(--text);
+  font-family: "Dubai-Regular";
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+header {
+  box-shadow:
+    0 2px 5px #00000029,
+    0 2px 10px #0000001f;
+  height: 100px;
+  font-size: 36px;
+  color: var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arslan-Wessam;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  @media (min-width: 768px) {
+    font-size: 50px;
+  }
+}
+.page {
+  height: calc(100vh - 60px);
+  width: 100%;
+  position: relative;
+  padding-top: 100px;
+  .bg {
+    background-image: url(../images/bg.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    @media (max-width: 768px) {
+      & {
+        background-size: 170%;
+      }
+    }
+  }
+  .footer-bg {
+    background-image: url(../images/footer-bg.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    @media (max-width: 992px) {
+      & {
+        height: 25%;
+      }
+    }
+    @media (max-width: 768px) {
+      & {
+        display: none;
+      }
+    }
+  }
+  .quiz-content {
+    padding-top: 60px;
+    opacity: 0;
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      gap: 15px;
+      margin-bottom: 40px;
+      font-family: "Dubai-Bold";
+      .q-count {
+        visibility: hidden;
+      }
+      .unfilled {
+        width: 85%;
+        height: 7px;
+        background-color: var(--unfilled);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 6px;
+        @media (min-width: 992px) {
+          & {
+            width: 75%;
+          }
+        }
+        @media (min-width: 1200px) {
+          & {
+            width: 65%;
+          }
+        }
+        .filled {
+          height: 14px;
+          background-color: var(--green);
+          border-radius: 10px;
+        }
+      }
+      .current-q-num {
+        color: var(--dark-green);
+        visibility: hidden;
+      }
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 35px;
+      text-align: center;
+      visibility: hidden;
+      span {
+        color: var(--gold);
+        font-weight: 500;
+      }
+    }
+    .choices {
+      font-size: 16px;
+      font-family: "Dubai-Bold";
+      display: grid;
+      gap: 20px;
+      margin-bottom: 50px;
+      width: 65%;
+      margin-left: auto;
+      margin-right: auto;
+      @media (max-width: 1200px) {
+        width: 85%;
+      }
+      p {
+        padding: 8px 16px;
+        background-color: var(--light-green);
+        border: 6px solid var(--unfilled);
+        border-radius: 50px;
+        cursor: pointer;
+        visibility: hidden;
+        &.selected,
+        &.right {
+          color: white;
+          box-shadow:
+            0 2px 5px #00000029,
+            0 2px 10px #0000001f;
+          transition:
+            box-shadow 1s,
+            background-color 1s,
+            color 0.3s;
+        }
+        &.selected {
+          background-color: var(--red);
+        }
+        &.right {
+          background-color: var(--green);
+        }
+      }
+    }
+    .next-q {
+      padding: 5px 40px;
+      border-radius: 20px;
+      background-color: var(--gold);
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 16px;
+      font-family: "Dubai-Bold";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+      box-shadow:
+        0 2px 5px #00000029,
+        0 2px 10px #0000001f;
+      &:hover {
+        box-shadow:
+          0 5px 11px #0000002e,
+          0 4px 15px #00000026;
+      }
+      img {
+        margin-right: 0.7em;
+      }
+    }
+  }
+}
+footer {
+  height: 60px;
+  box-shadow:
+    0 2px 5px #00000029,
+    0 2px 7px #0000001f;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .designer-name {
+    font-family: Arslan-Wessam;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 30px;
+  }
+  @media (min-width: 768px) {
+    & {
+      font-size: 24px;
+    }
+    .designer-name {
+      font-size: 36px;
+    }
+  }
 }

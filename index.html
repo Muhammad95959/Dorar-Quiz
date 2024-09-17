@@ -3,13 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>Dorar Quiz</title>
     <link href="css/main.css" rel="stylesheet" />
     <!-- get an arabic font -->
   </head>
   <body>
-    <img src="images/bg.png" alt="" />
-    <img src="images/footer-bg.svg" alt="" />
+    <header>
+      <span class="title"
+        >إِنَّمَا يَخۡشَى ٱللَّهَ مِنۡ عِبَادِهِ ٱلۡعُلَمَٰٓؤُاْۗ</span
+      >
+    </header>
+    <section class="page">
+      <div class="bg"></div>
+      <div class="footer-bg"></div>
+      <div class="container">
+        <div class="quiz-content">
+          <div class="bar">
+            <span class="q-count">$$</span>
+            <div class="unfilled">
+              <div class="filled"></div>
+            </div>
+            <span class="current-q-num">1</span>
+          </div>
+          <p class="question" dir="rtl">place holder</p>
+          <div class="choices" dir="rtl">
+            <p>place holder</p>
+            <p>place holder</p>
+            <p>place holder</p>
+          </div>
+          <button type="button" dir="rtl" class="next-q">
+            السؤال التالي
+            <img src="images/arrow_left.svg" alt="" />
+          </button>
+        </div>
+      </div>
+    </section>
+    <footer dir="rtl">
+      صممه الفقير إلى عفو ربه&nbsp;
+      <a
+        class="designer-name"
+        href="https://github.com/Muhammad95959"
+        target="_blank"
+        >مُحَمَّد حِفْظِي</a
+      >
+    </footer>
   </body>
   <script src="main.js"></script>
 </html>
