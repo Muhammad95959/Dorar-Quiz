@@ -18,8 +18,9 @@
       <div class="footer-bg"></div>
       <div class="container">
         <div class="quiz-content">
+          <div class="loading"></div>
           <div class="bar">
-            <span class="q-count">$$</span>
+            <span class="q-count">##</span>
             <div class="unfilled">
               <div class="filled"></div>
             </div>
@@ -27,15 +28,27 @@
           </div>
           <p class="question" dir="rtl">place holder</p>
           <div class="choices" dir="rtl">
-            <p>place holder</p>
-            <p>place holder</p>
-            <p>place holder</p>
+            <a>place holder</a>
+            <a>place holder</a>
+            <a>place holder</a>
           </div>
-          <button type="button" dir="rtl" class="next-q">
-            السؤال التالي
+          <button type="button" dir="rtl" class="next-q-btn">
+            <span>السؤال التالي</span>
             <img src="images/arrow_left.svg" alt="" />
           </button>
         </div>
+        <div class="result" dir="rtl">
+          <p class="c-blue">نتيجة الاختبار</p>
+          <p>
+            لقد حصلت على <span class="score c-blue">##</span> من
+            <span class="max-score">##</span> درجة
+          </p>
+          <div class="result-buttons">
+            <button type="button" class="repeat-btn">الاختبار مرة أخرى</button>
+            <button type="button" class="q-a-btn">الأسئلة وإجاباتها</button>
+          </div>
+        </div>
+        <div class="q-a-list" dir="rtl"></div>
       </div>
     </section>
     <footer dir="rtl">
