@@ -64,9 +64,34 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #b9b9b9;
 }
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  transform: translateX(-50%) translateY(-50%);
+  width: 100px;
+  height: 100px;
+  border: 15px solid var(--gold);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
 
 .all-page-content {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s;
 }
 header {
   box-shadow:
@@ -319,6 +344,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    transition: opacity 2s;
     .c-blue {
       color: var(--blue);
     }

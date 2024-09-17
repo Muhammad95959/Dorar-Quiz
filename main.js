@@ -1,3 +1,4 @@
+const spinner = document.querySelector(".spinner");
 const allPageContent = document.querySelector(".all-page-content");
 const settings = document.querySelector(".settings");
 const levels = document.querySelector(".levels");
@@ -28,7 +29,9 @@ let currentQuestionData;
 let score = 0;
 
 loadQuestions().then((qData) => {
-  allPageContent.style.display = "block";
+  spinner.remove();
+  allPageContent.style.visibility = "visible";
+  allPageContent.style.opacity = "100%";
   setupSettings(qData);
   setupQuizContent();
   setupResult();
@@ -99,7 +102,6 @@ function nextQuestion() {
     document.querySelector(".result .score").textContent = score;
     document.querySelector(".result .max-score").textContent = questionsCount;
     result.style.visibility = "visible";
-    result.style.transition = "opacity 2s";
     result.style.opacity = "100%";
   }
   currentQuestionData = qArray[currentQuestionIndex - 1];
