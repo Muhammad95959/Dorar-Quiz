@@ -1,3 +1,4 @@
+const allPageContent = document.querySelector(".all-page-content");
 const settings = document.querySelector(".settings");
 const levels = document.querySelector(".levels");
 const questionsCountSelectors = document.querySelectorAll(
@@ -27,9 +28,8 @@ let currentQuestionData;
 let score = 0;
 
 loadQuestions().then((qData) => {
-  for (let i = 0; i < questionsCount; i++)
-    qArray.push(qData.splice(Math.floor(Math.random() * qData.length), 1)[0]);
-  setupSettings();
+  allPageContent.style.display = "block";
+  setupSettings(qData);
   setupQuizContent();
   setupResult();
 });
@@ -61,7 +61,7 @@ async function loadQuestions() {
   }
 }
 
-function setupSettings() {
+function setupSettings(qData) {
   Array.from(levels.children).forEach((element, index) => {
     element.style.transition = "background-color 0.5s, color 0.5s";
     element.addEventListener("click", () => {
@@ -83,6 +83,8 @@ function setupSettings() {
     });
   });
   startQuizButton.addEventListener("click", () => {
+    for (let i = 0; i < questionsCount; i++)
+      qArray.push(qData.splice(Math.floor(Math.random() * qData.length), 1)[0]);
     settings.remove();
     nextQuestion();
     showQuizContent();
@@ -116,10 +118,7 @@ function nextQuestion() {
 
 function showQuizContent() {
   questionsCountSpan.textContent = questionsCount;
-  quizContent.style.marginTop = 0;
-  quizContent.style.visibility = "visible";
-  quizContent.style.transition = "opacity 1s";
-  quizContent.style.opacity = "100%";
+  quizContent.style.display = "block";
 }
 
 function setupQuizContent() {

@@ -8,95 +8,99 @@
     <!-- get an arabic font -->
   </head>
   <body>
-    <header>
-      <span class="title"
-        >إِنَّمَا يَخۡشَى ٱللَّهَ مِنۡ عِبَادِهِ ٱلۡعُلَمَٰٓؤُاْۗ</span
-      >
-    </header>
-    <section class="page">
-      <div class="bg"></div>
-      <div class="footer-bg"></div>
-      <div class="container">
-        <div class="settings" dir="rtl">
-          <div class="difficulty">
-            <h2>مستوى الصعوبة</h2>
-            <div class="levels">
-              <div class="box selected">
-                <h3>المستوى الأول</h3>
-              </div>
-              <div class="box">
-                <h3>المستوى الثاني</h3>
-              </div>
-              <div class="box">
-                <h3>المستوى الثالث</h3>
-              </div>
-            </div>
-          </div>
-          <div class="questions-count">
-            <h2>عدد أسئلة الاختبار</h2>
-            <div class="counts">
-              <div>
-                <div class="box"><h3>5</h3></div>
-                <div class="box selected"><h3>10</h3></div>
-                <div class="box"><h3>15</h3></div>
-              </div>
-              <div>
-                <div class="box"><h3>20</h3></div>
-                <div class="box"><h3>25</h3></div>
-                <div class="box"><h3>30</h3></div>
-              </div>
-              <div>
-                <div class="box"><h3>40</h3></div>
-                <div class="box"><h3>50</h3></div>
-                <div class="box"><h3>100</h3></div>
+    <div class="all-page-content">
+      <header>
+        <span class="title"
+          >إِنَّمَا يَخۡشَى ٱللَّهَ مِنۡ عِبَادِهِ ٱلۡعُلَمَٰٓؤُاْۗ</span
+        >
+      </header>
+      <section class="page">
+        <div class="bg"></div>
+        <div class="footer-bg"></div>
+        <div class="container">
+          <div class="settings" dir="rtl">
+            <div class="difficulty">
+              <h2>مستوى الصعوبة</h2>
+              <div class="levels">
+                <div class="box selected">
+                  <a>المستوى الأول</a>
+                </div>
+                <div class="box">
+                  <a>المستوى الثاني</a>
+                </div>
+                <div class="box">
+                  <a>المستوى الثالث</a>
+                </div>
               </div>
             </div>
-          </div>
-          <button type="button" class="start-quiz-btn">ابدأ الاختبار</button>
-        </div>
-        <div class="quiz-content">
-          <div class="loading"></div>
-          <div class="bar">
-            <span class="q-count">##</span>
-            <div class="unfilled">
-              <div class="filled"></div>
+            <div class="questions-count">
+              <h2>عدد أسئلة الاختبار</h2>
+              <div class="counts">
+                <div>
+                  <div class="box"><a>5</a></div>
+                  <div class="box selected"><a>10</a></div>
+                  <div class="box"><a>15</a></div>
+                </div>
+                <div>
+                  <div class="box"><a>20</a></div>
+                  <div class="box"><a>25</a></div>
+                  <div class="box"><a>30</a></div>
+                </div>
+                <div>
+                  <div class="box"><a>40</a></div>
+                  <div class="box"><a>50</a></div>
+                  <div class="box"><a>100</a></div>
+                </div>
+              </div>
             </div>
-            <span class="current-q-num">1</span>
+            <button type="button" class="start-quiz-btn">ابدأ الاختبار</button>
           </div>
-          <p class="question" dir="rtl">place holder</p>
-          <div class="choices" dir="rtl">
-            <a>place holder</a>
-            <a>place holder</a>
-            <a>place holder</a>
+          <div class="quiz-content">
+            <div class="loading"></div>
+            <div class="bar">
+              <span class="q-count">##</span>
+              <div class="unfilled">
+                <div class="filled"></div>
+              </div>
+              <span class="current-q-num">1</span>
+            </div>
+            <p class="question" dir="rtl">place holder</p>
+            <div class="choices" dir="rtl">
+              <a>place holder</a>
+              <a>place holder</a>
+              <a>place holder</a>
+            </div>
+            <button type="button" dir="rtl" class="next-q-btn">
+              <span>السؤال التالي</span>
+              <img src="images/arrow_left.svg" alt="" />
+            </button>
           </div>
-          <button type="button" dir="rtl" class="next-q-btn">
-            <span>السؤال التالي</span>
-            <img src="images/arrow_left.svg" alt="" />
-          </button>
+          <div class="result" dir="rtl">
+            <p class="c-blue">نتيجة الاختبار</p>
+            <p>
+              لقد حصلت على <span class="score c-blue">##</span> من
+              <span class="max-score">##</span> درجة
+            </p>
+            <div class="result-buttons">
+              <button type="button" class="repeat-btn">
+                الاختبار مرة أخرى
+              </button>
+              <button type="button" class="q-a-btn">الأسئلة وإجاباتها</button>
+            </div>
+          </div>
+          <div class="q-a-list" dir="rtl"></div>
         </div>
-        <div class="result" dir="rtl">
-          <p class="c-blue">نتيجة الاختبار</p>
-          <p>
-            لقد حصلت على <span class="score c-blue">##</span> من
-            <span class="max-score">##</span> درجة
-          </p>
-          <div class="result-buttons">
-            <button type="button" class="repeat-btn">الاختبار مرة أخرى</button>
-            <button type="button" class="q-a-btn">الأسئلة وإجاباتها</button>
-          </div>
-        </div>
-        <div class="q-a-list" dir="rtl"></div>
-      </div>
-    </section>
-    <footer dir="rtl">
-      صممه الفقير إلى عفو ربه&nbsp;
-      <a
-        class="designer-name"
-        href="https://github.com/Muhammad95959"
-        target="_blank"
-        >مُحَمَّد حِفْظِي</a
-      >
-    </footer>
+      </section>
+      <footer dir="rtl">
+        صممه الفقير إلى عفو ربه&nbsp;
+        <a
+          class="designer-name"
+          href="https://github.com/Muhammad95959"
+          target="_blank"
+          >مُحَمَّد حِفْظِي</a
+        >
+      </footer>
+    </div>
   </body>
   <script src="main.js"></script>
 </html>

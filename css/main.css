@@ -12,6 +12,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 @font-face {
   font-family: "Dubai-Regular";
@@ -64,6 +65,9 @@ body {
   background-color: #b9b9b9;
 }
 
+.all-page-content {
+  display: none;
+}
 header {
   box-shadow:
     0 2px 5px #00000029,
@@ -127,9 +131,10 @@ header {
     }
   }
   .settings {
-    /*display: none;*/
     padding-top: 100px;
     text-align: center;
+    font-family: "Dubai-Bold";
+    font-size: 18px;
     @media (max-width: 768px) {
       padding-top: 20px;
     }
@@ -241,9 +246,7 @@ header {
   }
   .quiz-content {
     padding-top: 60px;
-    visibility: hidden;
-    margin-top: -99999px;
-    opacity: 0;
+    display: none;
     .bar {
       display: flex;
       align-items: center;
