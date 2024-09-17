@@ -1,3 +1,9 @@
+const settings = document.querySelector(".settings");
+const levels = document.querySelector(".levels");
+const questionsCountSelectors = document.querySelectorAll(
+  ".questions-count .box",
+);
+const startQuizButton = document.querySelector(".start-quiz-btn");
 const quizContent = document.querySelector(".quiz-content");
 const question = document.querySelector(".quiz-content .question");
 const answers = document.querySelectorAll(".choices a");
@@ -5,13 +11,13 @@ const nextButton = document.querySelector(".next-q-btn");
 const currentQuestionSpan = document.querySelector(".current-q-num");
 const questionsCountSpan = document.querySelector(".q-count");
 const filledBar = document.querySelector(".bar .filled");
-const result = document.querySelector("div.result");
+const result = document.querySelector(".result");
 const repeatButton = document.querySelector(".repeat-btn");
 const qaButton = document.querySelector(".q-a-btn");
 const qaList = document.querySelector(".q-a-list");
 
 let level = 1;
-let questionsCount = 5;
+let questionsCount = 10;
 let qArray = [];
 let selectedIndexes = [];
 let rightIndexes = [];
@@ -19,6 +25,14 @@ let currentQuestionIndex = 0;
 let answered = true;
 let currentQuestionData;
 let score = 0;
+
+loadQuestions().then((qData) => {
+  for (let i = 0; i < questionsCount; i++)
+    qArray.push(qData.splice(Math.floor(Math.random() * qData.length), 1)[0]);
+  setupSettings();
+  setupQuizContent();
+  setupResult();
+});
 
 async function loadQuestions() {
   let qData = [];
@@ -47,6 +61,34 @@ async function loadQuestions() {
   }
 }
 
+function setupSettings() {
+  Array.from(levels.children).forEach((element, index) => {
+    element.style.transition = "background-color 0.5s, color 0.5s";
+    element.addEventListener("click", () => {
+      level = index + 1;
+      Array.from(levels.children).forEach((child) =>
+        child.classList.remove("selected"),
+      );
+      element.classList.add("selected");
+    });
+  });
+  Array.from(questionsCountSelectors).forEach((element) => {
+    element.style.transition = "background-color 0.5s, color 0.5s";
+    element.addEventListener("click", () => {
+      questionsCount = +element.textContent;
+      Array.from(questionsCountSelectors).forEach((child) =>
+        child.classList.remove("selected"),
+      );
+      element.classList.add("selected");
+    });
+  });
+  startQuizButton.addEventListener("click", () => {
+    settings.remove();
+    nextQuestion();
+    showQuizContent();
+  });
+}
+
 function nextQuestion() {
   currentQuestionIndex++;
   if (!answered) return;
@@ -72,6 +114,21 @@ function nextQuestion() {
   answered = false;
 }
 
+function showQuizContent() {
+  questionsCountSpan.textContent = questionsCount;
+  quizContent.style.marginTop = 0;
+  quizContent.style.visibility = "visible";
+  quizContent.style.transition = "opacity 1s";
+  quizContent.style.opacity = "100%";
+}
+
+function setupQuizContent() {
+  nextButton.addEventListener("click", nextQuestion);
+  Array.from(answers).forEach((element, index) =>
+    element.addEventListener("click", () => checkAnswer(element, index)),
+  );
+}
+
 function checkAnswer(element, elementOrder) {
   if (answered) return;
   element.classList.add("selected");
@@ -88,6 +145,15 @@ function checkAnswer(element, elementOrder) {
     element.classList.contains("right");
   if (rightAnswer) score++;
   answered = true;
+}
+
+function setupResult() {
+  repeatButton.addEventListener("click", () => window.location.reload());
+  qaButton.addEventListener("click", () => {
+    result.remove();
+    document.querySelector(".footer-bg").remove();
+    showQuestionsAndAnswersPage();
+  });
 }
 
 function showQuestionsAndAnswersPage() {
@@ -130,22 +196,3 @@ function showQuestionsAndAnswersPage() {
   repeat.textContent = "الاختبار مرة أخرى";
   repeat.addEventListener("click", () => window.location.reload());
 }
-
-loadQuestions().then((qData) => {
-  for (let i = 0; i < questionsCount; i++)
-    qArray.push(qData.splice(Math.floor(Math.random() * qData.length), 1)[0]);
-  nextQuestion();
-  questionsCountSpan.textContent = questionsCount;
-  quizContent.style.transition = "opacity 1s";
-  quizContent.style.opacity = "100%";
-  nextButton.addEventListener("click", nextQuestion);
-  Array.from(answers).forEach((element, index) =>
-    element.addEventListener("click", () => checkAnswer(element, index)),
-  );
-  repeatButton.addEventListener("click", () => window.location.reload());
-  qaButton.addEventListener("click", () => {
-    result.remove();
-    document.querySelector(".footer-bg").remove();
-    showQuestionsAndAnswersPage();
-  });
-});
