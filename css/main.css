@@ -98,11 +98,8 @@ header {
     0 2px 5px #00000029,
     0 2px 10px #0000001f;
   height: 100px;
-  font-size: 36px;
-  color: var(--gold);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 50px;
+  color: black;
   font-family: Arslan-Wessam;
   position: absolute;
   top: 0;
@@ -110,8 +107,67 @@ header {
   width: 100%;
   background-color: white;
   overflow: hidden;
-  @media (min-width: 768px) {
-    font-size: 50px;
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .image {
+      height: 110%;
+      position: relative;
+      @media (max-width: 768px) {
+        display: none;
+      }
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-color: var(--gold);
+        border-radius: 50%;
+      }
+      &::before {
+        left: -30px;
+      }
+      &::after {
+        right: -30px;
+      }
+      img {
+        max-height: 100%;
+      }
+    }
+    p {
+      color: #558049;
+      position: relative;
+      top: 5px;
+      font-size: 60px;
+      @media (min-width: 768px) {
+        display: none;
+      }
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-color: var(--gold);
+        border-radius: 50%;
+      }
+      &::before {
+        left: -30px;
+      }
+      &::after {
+        right: -30px;
+      }
+    }
   }
 }
 .page {
@@ -485,6 +541,7 @@ footer {
     color: var(--gold);
     text-decoration: none;
     font-size: 30px;
+    outline: none;
   }
   @media (min-width: 768px) {
     & {
