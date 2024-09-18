@@ -39,19 +39,20 @@ loadQuestions().then((qData) => {
 
 async function loadQuestions() {
   let qData = [];
+  let random = () => Math.floor(Math.random() * 3) + 1;
   try {
     const mainResponse = await fetch("database/main.json");
     const mainData = await mainResponse.json();
     const categories = mainData["categories"];
-    for (let category of categories) {
-      const categoryResponse = await fetch(category["path"]);
+    for (let i = 0; i < categories.length; i++) {
+      const categoryResponse = await fetch(categories[i]["path"]);
       const categoryData = await categoryResponse.json();
       const dataArray = categoryData["DataArray"];
-      for (let dataItem of dataArray) {
-        const files = dataItem["files"];
-        for (let file of files) {
-          if (file["level"] === level) {
-            const fileResponse = await fetch(file["path"]);
+      for (let j = random() - 1; j < dataArray.length; j += random()) {
+        const files = dataArray[j]["files"];
+        for (let k = random() - 1; k < files.length; k += random()) {
+          if (files[k]["level"] === level) {
+            const fileResponse = await fetch(files[k]["path"]);
             const filePath = await fileResponse.json();
             for (let qObject of filePath) qData.push(qObject);
           }
