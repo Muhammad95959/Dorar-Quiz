@@ -28,14 +28,49 @@ let answered = true;
 let currentQuestionData;
 let score = 0;
 
-loadQuestions().then((qData) => {
-  spinner.remove();
-  allPageContent.style.visibility = "visible";
-  allPageContent.style.opacity = "100%";
-  setupSettings(qData);
-  setupQuizContent();
-  setupResult();
-});
+allPageContent.style.visibility = "visible";
+allPageContent.style.opacity = "100%";
+setupSettings();
+setupQuizContent();
+setupResult();
+
+function setupSettings() {
+  Array.from(levels.children).forEach((element, index) => {
+    element.style.transition = "background-color 0.5s, color 0.5s";
+    element.addEventListener("click", () => {
+      level = index + 1;
+      Array.from(levels.children).forEach((child) =>
+        child.classList.remove("selected"),
+      );
+      element.classList.add("selected");
+    });
+  });
+  Array.from(questionsCountSelectors).forEach((element) => {
+    element.style.transition = "background-color 0.5s, color 0.5s";
+    element.addEventListener("click", () => {
+      questionsCount = +element.textContent;
+      Array.from(questionsCountSelectors).forEach((child) =>
+        child.classList.remove("selected"),
+      );
+      element.classList.add("selected");
+    });
+  });
+  startQuizButton.addEventListener("click", () => {
+    spinner.style.visibility = "visible";
+    spinner.style.opacity = "100%";
+    settings.classList.add("loading");
+    loadQuestions().then((qData) => {
+      for (let i = 0; i < questionsCount; i++)
+        qArray.push(
+          qData.splice(Math.floor(Math.random() * qData.length), 1)[0],
+        );
+      spinner.remove();
+      settings.remove();
+      nextQuestion();
+      showQuizContent();
+    });
+  });
+}
 
 async function loadQuestions() {
   let qData = [];
@@ -63,36 +98,6 @@ async function loadQuestions() {
   } catch (error) {
     console.log("Error: " + error);
   }
-}
-
-function setupSettings(qData) {
-  Array.from(levels.children).forEach((element, index) => {
-    element.style.transition = "background-color 0.5s, color 0.5s";
-    element.addEventListener("click", () => {
-      level = index + 1;
-      Array.from(levels.children).forEach((child) =>
-        child.classList.remove("selected"),
-      );
-      element.classList.add("selected");
-    });
-  });
-  Array.from(questionsCountSelectors).forEach((element) => {
-    element.style.transition = "background-color 0.5s, color 0.5s";
-    element.addEventListener("click", () => {
-      questionsCount = +element.textContent;
-      Array.from(questionsCountSelectors).forEach((child) =>
-        child.classList.remove("selected"),
-      );
-      element.classList.add("selected");
-    });
-  });
-  startQuizButton.addEventListener("click", () => {
-    for (let i = 0; i < questionsCount; i++)
-      qArray.push(qData.splice(Math.floor(Math.random() * qData.length), 1)[0]);
-    settings.remove();
-    nextQuestion();
-    showQuizContent();
-  });
 }
 
 function nextQuestion() {
