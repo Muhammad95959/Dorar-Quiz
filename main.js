@@ -178,7 +178,7 @@ function showQuestionsAndAnswersPage() {
     learnMore.href = qArray[i].link;
     learnMore.target = "_blank";
     learnMore.classList.add("learn-more");
-    learnMore.textContent = "<< تعلم أكثر حول المسألة >>";
+    learnMore.textContent = "تعلم أكثر حول المسألة";
     const choices = document.createElement("div");
     div.appendChild(choices);
     choices.classList.add(`choices-${i + 1}`);
